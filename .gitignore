@@ -1,0 +1,54 @@
+# Home Assistant Add-on .gitignore
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Logs
+*.log
+
+# Build files
+build/
+dist/
+
+# Temporary files
+.tmp/
+.temp/
+tmp/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.example
+
+# Editor files
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+*~
+
+# Operating System Files
+.DS_Store
+._*
+Thumbs.db
+.claude/
+
+# Local add-on test artifacts (volume mounted as /config during run-addon)
+config/
+
+# Maintainer-local files (not published with the add-on repository)
+/AGENTS.md
+/CLAUDE.md
+/COMPLIANCE.md
+/STATUS.md
+/UPSTREAM_SHA
+/.githooks/
+/.grok/
+/docs/
+/scripts/

@@ -1,0 +1,46 @@
+name: Publish Images
+
+# Builds the add-on for all architectures and pushes images to GHCR.
+# After packages are public, set `image:` in agent-terminal/config.yaml so
+# Home Assistant pulls prebuilt images instead of building locally.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "agent-terminal/**"
+      - ".github/workflows/publish-images.yml"
+    tags:
+      - "v*"
+
+jobs:
+  publish:
+    name: Publish (${{ matrix.arch }})
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [aarch64, amd64]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push add-on image
+        uses: home-assistant/builder@2026.02.1
+        with:
+          args: |
+            --${{ matrix.arch }} \
+            --target /data/agent-terminal \
+            --image "${{ matrix.arch }}-addon-agent-terminal" \
+            --docker-hub "ghcr.io/${{ github.repository_owner }}" \
+            --addon

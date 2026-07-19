@@ -1,0 +1,67 @@
+# Third-party notices — Agent Terminal
+
+Repository: https://github.com/BONOBOGAMES/agent-terminal
+
+This Home Assistant add-on repository is based on open-source software and
+distributes or invokes third-party components under the licenses below.
+
+## Claude Terminal (upstream add-on)
+
+- Project: Claude Terminal for Home Assistant
+- Author: Tom Cassady (heytcass)
+- Source: https://github.com/heytcass/home-assistant-addons
+- Pin: cebf29eb4ac6107394b7290c3ce9bb75c771b084 (CT v2.5.0 era)
+- License: MIT
+- Notes: Upstream LICENSE copyright line used a placeholder (`[Your Name]`);
+  public attribution is taken from repository.yaml / README (Tom Cassady).
+  Upstream explicitly notes that Claude Code is *not* covered by the MIT
+  add-on license. This fork does not ship Claude Code.
+
+## Grok Build CLI (`grok`)
+
+- Product: Grok Build coding agent / CLI
+- Source tree: https://github.com/xai-org/grok-build
+- License (source): Apache License 2.0
+- Installer: https://x.ai/cli/install.sh
+- Service use: xAI Terms of Service — https://x.ai/legal/terms-of-service
+- Brand: xAI Brand Guidelines — https://x.ai/legal/brand-guidelines
+- Notes: Redistribution of Grok Build binaries must retain Apache notices.
+  Calling xAI backends requires an end-user account/API key under xAI ToS.
+  This project does not grant xAI trademark rights. Product naming and logos
+  follow https://x.ai/legal/brand-guidelines.
+
+## ha-mcp (Home Assistant MCP server)
+
+- Project: https://github.com/homeassistant-ai/ha-mcp
+- License: MIT (Copyright (c) 2024 Julien)
+- SPDX: MIT (confirmed via GitHub license API, 2026-07-17)
+- Role: Optional MCP server invoked at runtime via `uvx` (not vendored).
+
+## uv (Astral)
+
+- Project: https://github.com/astral-sh/uv
+- License: Apache License 2.0
+- Role: Installs managed Python for ha-mcp inside the container.
+
+## ttyd
+
+- Project: https://github.com/tsl0922/ttyd
+- License: MIT (Copyright (c) 2016-2026 Shuanglei Tao)
+- Role: Web terminal, installed from Alpine packages.
+
+## tmux, bash, git, jq, curl, and other Alpine packages
+
+- Distribution: Alpine Linux packages in the add-on image
+- Licenses: OSI-friendly package licenses as shipped by Alpine
+- Role: Runtime tooling for the terminal environment
+
+## Home Assistant base images
+
+- Images: `ghcr.io/home-assistant/{aarch64,amd64}-base:3.21`
+- Role: Official HA add-on base layers
+- Notes: Do not strip notices from base layers you redistribute.
+
+## Not included
+
+- Anthropic Claude Code CLI / `@anthropic-ai/claude-code` — **excluded by design**
+- heytcass GHCR images — **not rebadged**; this project builds and pushes its own images

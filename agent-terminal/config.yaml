@@ -1,0 +1,76 @@
+---
+name: "Agent Terminal"
+description: "Web terminal with xAI Grok Build CLI and persistent auth"
+version: "1.0.0"
+slug: "agent_terminal"
+init: false
+
+# Prebuilt images on GHCR — Supervisor pulls these instead of building
+# locally (no build OOM, no image blobs in backups). Tag = version below.
+# Leave commented until images exist under this path; HA then builds locally.
+# image: "ghcr.io/bonobogames/{arch}-addon-agent-terminal"
+
+# Supported architectures (armv7 not supported: CT dropped it; no grok armv7)
+arch:
+  - aarch64
+  - amd64
+
+# External resources
+url: "https://github.com/BONOBOGAMES/agent-terminal"
+
+# Web interface configuration
+ingress: true
+ingress_port: 7681
+panel_icon: mdi:console
+panel_title: "Agent Terminal"
+panel_admin: true
+
+# Port configuration
+ports:
+  7681/tcp: null
+ports_description:
+  7681/tcp: "Web terminal (not required for ingress)"
+
+# Add-on configuration options
+options:
+  auto_launch_grok: true
+  grok_auto_update: true
+  xai_api_key: ""
+  always_approve: false
+  grok_extra_args: ""
+  ha_smart_context: true
+  enable_ha_mcp: true
+  ha_mcp_version: "7.11.0"
+  persistent_apk_packages: []
+  persistent_pip_packages: []
+schema:
+  auto_launch_grok: bool?
+  grok_auto_update: bool?
+  xai_api_key: password?
+  always_approve: bool?
+  grok_extra_args: str?
+  ha_smart_context: bool?
+  enable_ha_mcp: bool?
+  ha_mcp_version: str?
+  persistent_apk_packages:
+    - str
+  persistent_pip_packages:
+    - str
+
+# Volume mappings for file access
+map:
+  - config:rw            # Home Assistant configuration files
+  - all_addon_configs:rw # Other add-ons' config directories (/addon_configs)
+  - share:rw             # Shared folder between add-ons and HA
+
+# API access for Home Assistant integration
+hassio_api: true
+hassio_role: manager
+homeassistant_api: true
+auth_api: true
+
+# Service startup configuration
+startup: services
+
+# Web UI access URL
+webui: http://[HOST]:[PORT:7681]/
