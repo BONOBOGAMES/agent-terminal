@@ -1,14 +1,13 @@
 ---
 name: "Agent Terminal"
 description: "Web terminal with xAI Grok Build CLI and persistent auth"
-version: "1.0.0"
+version: "1.0.1"
 slug: "agent_terminal"
 init: false
 
 # Prebuilt images on GHCR — Supervisor pulls these instead of building
-# locally (no build OOM, no image blobs in backups). Tag = version below.
-# Leave commented until images exist under this path; HA then builds locally.
-# image: "ghcr.io/bonobogames/{arch}-addon-agent-terminal"
+# locally (no build OOM, no image blobs in backups). Tag = version above.
+image: "ghcr.io/bonobogames/{arch}-addon-agent-terminal"
 
 # Supported architectures (armv7 not supported: CT dropped it; no grok armv7)
 arch:

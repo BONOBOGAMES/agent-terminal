@@ -128,7 +128,7 @@ Never commit API keys to git. Keys belong in Supervisor add-on options only.
 - **Can't copy the OAuth login URL**: open a second tmux window (`Ctrl+B` then `C`), run `grok-login-url`, and open `/config/grok-login-url.txt` with the File Editor add-on (or over Samba). Prefer **xai_api_key** instead.
 - **Grok exits immediately**: check add-on log; ensure `xai_api_key` is set or complete login; run `grok-doctor`.
 - **Diagnostics**: run `grok-doctor` in the terminal for connectivity, memory, and environment checks.
-- **Local image build OOM**: wait for prebuilt GHCR images (`image:` in `config.yaml`) or free Supervisor memory.
+- **Install or update fails pulling the image**: check that your HA host can reach `ghcr.io`, then retry. Prebuilt images are published for `amd64` and `aarch64`.
 
 ## Credits
 
