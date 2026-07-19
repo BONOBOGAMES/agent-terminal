@@ -135,3 +135,5 @@ Never commit API keys to git. Keys belong in Supervisor add-on options only.
 - Architecture and add-on patterns from **Claude Terminal** by Tom Cassady ([heytcass/home-assistant-addons](https://github.com/heytcass/home-assistant-addons)), MIT.
 - **Grok Build** by xAI / SpaceXAI (Apache-2.0 source; Service use under xAI ToS).
 - **ha-mcp** by homeassistant-ai (MIT).
+
+Created with Grok.

@@ -43,6 +43,8 @@ If you have any questions or issues with this add-on, please create an issue in 
 
 This add-on is a structural fork of [Claude Terminal](https://github.com/heytcass/home-assistant-addons) by Tom Cassady (heytcass), rewired for xAI’s Grok Build CLI. Upstream is MIT-licensed; see [LICENSE](LICENSE) and [NOTICE](NOTICE).
 
+Created with Grok.
+
 ## License
 
 This repository is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
