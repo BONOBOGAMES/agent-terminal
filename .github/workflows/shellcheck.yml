@@ -15,16 +15,25 @@ jobs:
   shellcheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Run ShellCheck on pure-bash scripts
-        uses: ludeeus/action-shellcheck@2.0.0
-        env:
-          SHELLCHECK_OPTS: -e SC1091 -e SC2086 -e SC2034
-        with:
-          scandir: "./agent-terminal/scripts"
-          # run.sh / setup-ha-mcp / health-check / persist-install use bashio
-          # (HA base image) and are covered by build-test smoke instead
-          ignore_names: >-
-            setup-ha-mcp.sh
-            health-check.sh
-            persist-install.sh
+      - uses: actions/checkout@v5
+
+      # Prefer distro shellcheck over ludeeus/action-shellcheck (Node 20 action).
+      - name: Install ShellCheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+
+      - name: Run ShellCheck
+        run: |
+          set -euo pipefail
+          # bashio scripts only run inside HA base images; skip them here
+          skip='setup-ha-mcp.sh|health-check.sh|persist-install.sh'
+          status=0
+          for f in agent-terminal/scripts/*.sh; do
+            base=$(basename "$f")
+            if echo "$base" | grep -Eq "^($skip)$"; then
+              echo "SKIP: $f (bashio)"
+              continue
+            fi
+            echo "CHECK: $f"
+            shellcheck -e SC1091 -e SC2086 -e SC2034 "$f" || status=1
+          done
+          exit $status

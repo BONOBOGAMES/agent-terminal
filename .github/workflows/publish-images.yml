@@ -1,8 +1,7 @@
 name: Publish Images
 
 # Builds the add-on for all architectures and pushes images to GHCR.
-# After packages are public, set `image:` in agent-terminal/config.yaml so
-# Home Assistant pulls prebuilt images instead of building locally.
+# config.yaml `image:` points HA at these packages so it does not build locally.
 
 on:
   workflow_dispatch:
@@ -26,10 +25,10 @@ jobs:
       matrix:
         arch: [aarch64, amd64]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Log in to GHCR
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
