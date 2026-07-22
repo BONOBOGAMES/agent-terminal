@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.3
+
+- Docs: install path updated for Home Assistant **Apps** rename (2026.2+)
+- My Home Assistant repository link
+- Use-case / xAI account requirements clarified
+
 ## 1.0.2
 
 - CI: Node 24-compatible GitHub Actions; ShellCheck via apt

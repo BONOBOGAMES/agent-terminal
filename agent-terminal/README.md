@@ -1,11 +1,11 @@
 # Agent Terminal
 
-Home Assistant add-on: web terminal (ttyd + tmux) running the xAI **Grok Build**
-CLI (`grok`) with access to `/config`.
+Home Assistant **app** (formerly *add-on*): web terminal (ttyd + tmux) running the
+xAI **Grok Build** CLI (`grok`) with access to `/config`.
 
 See [DOCS.md](DOCS.md) for installation, options, security notes, and troubleshooting.
 
-**Add-on store repository:** [github.com/BONOBOGAMES/agent-terminal](https://github.com/BONOBOGAMES/agent-terminal)
+**App store repository:** [github.com/BONOBOGAMES/agent-terminal](https://github.com/BONOBOGAMES/agent-terminal)
 
 **Unofficial** — not affiliated with xAI, SpaceXAI, Anthropic, or Home Assistant.
 
